@@ -18,5 +18,19 @@ function buildGrid(){
 
 
 const grid = buildGrid()
-console.log(grid)
+
+render(grid)
+
+// função para renderização do grid no canvas
+function render(grid){
+    for (let col = 0; col < grid.length; col++){ // percorre cada coluna
+        for (let row = 0; row < grid[col].length; row++){ //percorre cada celula por linha
+            const cell  = grid[col][row] // preenche cada celula com o valor correspondente do grid
+
+            ctx.beginPath(); // inicia novo caminho no canvas
+            ctx.rect(col * resolution, row * resolution, resolution, resolution) // desenha a celula com os argumentos: posições x e y, largura e altura
+            ctx.stroke() // desenha as celulas com bordas
+        }
+    }
+}
 
