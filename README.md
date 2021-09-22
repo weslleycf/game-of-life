@@ -21,7 +21,7 @@ Este projeto foi implementado em HTML, CSS e JavaScript por ser de fácil execu�
 
 ### **3. Fluxo do programa** <a id="fluxo"></a>
 
-_Main() > buildGrid() > update() > nextGen() > calculateNeighbours() > applyRules() > render() > update()_
+_main() > buildGrid() > update() > nextGen() > calculateNeighbours() > applyRules() > render() > update()_
 
 
 ### **4. Referências e fontes de pesquisa** <a id="fontes"></a>
