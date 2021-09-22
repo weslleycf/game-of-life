@@ -1,7 +1,8 @@
+//Configurações básicas 
+
 const canvas = document.querySelector('canvas') // captura o elento canvas
 const ctx = canvas.getContext('2d') //configura o contexto do canvas para renderização em 2 dimensões
 
-//Configurações básicas 
 const canvasHeight = 600 // altura do canvas em pixels
 const canvasWidth = 600 // largura do canvas em pixels
 const resolution = 8 // tamanho das celulas em pixels
@@ -27,8 +28,8 @@ const colors = {
 }
 
 // define a cor que será aplicada para as celulas vivas e mortas
-const liveCellColor = colors.purple
-const deadCellColor = colors.white
+let liveCellColor = colors.purple
+let deadCellColor = colors.white
 
 
 //inicia a aplicação
@@ -40,10 +41,10 @@ function main() {
     const grid = buildGrid()
 
 
-    //atualiza a o grid e recursivamente atualiza a animação
+    //atualiza o canvas
     update()
 
-    //    
+    // função para atualizar o canvas   
     function update() {
         render(nextGen(grid)) // renderiza o grid gerado na nova geração
         requestAnimationFrame(update) //atualiza o animação chamando recursivamente a função update
@@ -59,6 +60,7 @@ function buildGrid() {
 
 //função para criação da nova geracao do grid
 function nextGen(grid) {
+    //varivel para retornar o grid da proxima geração atualizado
     let nextGrid;
     const currentGen = grid.map(arr => arr.map(cell => cell))
     for (let col = 0; col < currentGen.length; col++) { // percorre cada coluna
@@ -67,6 +69,8 @@ function nextGen(grid) {
 
             //calcula o total de vizinhos da geração atual 
             const numNeighbours = calculateNeighbours(col, row, currentGen)
+
+            //aplica as regras do jogo
             nextGrid = applyRules(cell, numNeighbours, grid, col, row)
 
         }
@@ -93,11 +97,11 @@ function render(grid) {
 //função para calcular o total de vizinhos de cada celula
 function calculateNeighbours(col, row, currentGen) {
     //verificando o valor das celulas vizinhas
-    let numNeighbours = 0 // variavel para somar a quantidade de vizinhos
+    let numNeighbours = 0 // variavel totalizar a quantidade de vizinhos
     for (let i = -1; i < 2; i++) { // percorre as posição das colunas em relação a celula atual de -1 a 1
         for (let j = -1; j < 2; j++) { // percorre as posição das linhas em relação a celula atual de -1 a 1
 
-            // verifica se o vizinho é a celula central, em caso positivo a desconsidera no calculo 
+            // verifica se o vizinho é a celula central, caso true a desconsidera no calculo 
             if (i == 0 && j == 0) {
                 continue
             }
